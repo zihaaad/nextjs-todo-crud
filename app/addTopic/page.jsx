@@ -17,13 +17,16 @@ const AddTopicPage = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/api/topics", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({title, description}),
-      });
+      const res = await fetch(
+        "https://nextjs-todo-crud.vercel.app/api/topics",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({title, description}),
+        }
+      );
       if (res.ok) {
         router.push("/");
         router.refresh();

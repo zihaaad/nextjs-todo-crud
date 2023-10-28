@@ -2,9 +2,12 @@ import EditTopicForm from "@/app/components/EditTopicForm";
 
 const getTopicById = async (id) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/topics/${id}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `https://nextjs-todo-crud.vercel.app/api/topics/${id}`,
+      {
+        cache: "no-store",
+      }
+    );
     if (!res.ok) {
       throw new Error("Failed To Fetch Single Topic");
     }
@@ -16,7 +19,7 @@ const getTopicById = async (id) => {
 
 const EditTopicPage = async ({params}) => {
   const {id} = params;
-  const {topic} = await getTopicById(id);
+  const topic = await getTopicById(id);
   const {title, description} = topic;
   return <EditTopicForm id={id} title={title} description={description} />;
 };

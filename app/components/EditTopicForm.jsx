@@ -10,15 +10,17 @@ const EditTopicForm = ({id, title, description}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const res = await fetch(`http://localhost:3000/api/topics/${id}`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({newTitle, newDescription}),
-      });
+      const res = await fetch(
+        `https://nextjs-todo-crud.vercel.app/api/topics/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({newTitle, newDescription}),
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Failed To Update");

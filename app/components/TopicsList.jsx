@@ -5,7 +5,7 @@ import {HiPencilAlt} from "react-icons/hi";
 
 const getTopics = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/topics", {
+    const res = await fetch("https://nextjs-todo-crud.vercel.app/api/topics", {
       cache: "no-store",
     });
     if (!res.ok) {
@@ -19,11 +19,10 @@ const getTopics = async () => {
 };
 
 const TopicsList = async () => {
-  const {topics} = await getTopics();
-
+  const topics = await getTopics();
   return (
-    <>
-      {topics.map((topic) => (
+    <div>
+      {topics?.map((topic) => (
         <div
           key={topic._id}
           className="font-semibold p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start">
@@ -39,7 +38,7 @@ const TopicsList = async () => {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
